@@ -3,10 +3,8 @@ function RecentDesigns()
 
     const designs = Array(6).fill(null).map((_,i)=>({
         id : i , 
-        title: "design" + i
-
+        title: "design" + i,
     }))
-
 
     return (
         <div className="mt-4">
