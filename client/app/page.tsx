@@ -1,6 +1,7 @@
 import HomeSideBar from '../components/home/HomeSideBar'
 import Banner from '../components/home/Banner'
 import Header from '../components/home/Header'
+import RecentDesigns from '../components/home/RecentDesigns'
 export default function Home() {
   return (
       <div className="flex min-h-screen bg-white">
@@ -9,6 +10,7 @@ export default function Home() {
           <Header></Header>
           <main className='flex-1 p-6 overflow-y-auto pt-20'>
             <Banner/>
+            <RecentDesigns></RecentDesigns>
           </main>
         </div>
       </div>

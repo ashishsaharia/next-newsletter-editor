@@ -5,6 +5,7 @@ import { Input } from '../ui/input';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem } from '../ui/dropdown-menu';
 import { DropdownMenuTrigger } from '@radix-ui/react-dropdown-menu';
 import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar';
+import Image from 'next/image';
  
 function Header() {
   const { data: session } = useSession();
@@ -14,9 +15,19 @@ function Header() {
   };
 
   return (
-    <header className="h-16 border-b border-gray-200 bg-white flex items-center px-6 fixed top-0 right-0 left-[72px] z-10">
+    <header className="h-16 border-b border-gray-200 bg-linear-to-r from-[#ffffff] via-white to-white flex items-center px-6 fixed top-0 right-0 left-[72px] z-10">
       {/* Left side can be empty or have logo later */}
       <div className="flex-1"></div>
+      <div className="absolute top-4 left-4 z-10">
+        {/* <Image
+          src="https://maitri.bmu.edu.in/getCustomerLogo.json"
+          alt="bmu logo"
+          width={150}
+          height={50}
+          priority
+        /> */}
+        <h2>BMU Newsletter</h2>
+      </div>
 
       {/* Search bar on the right */}
       <div className="flex items-center gap-4">
