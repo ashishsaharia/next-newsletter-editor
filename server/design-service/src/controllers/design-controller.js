@@ -12,10 +12,10 @@ exports.getUserDesigns = async (req, res) => {
       data: designs,
     });
   } catch (err) {
-    console.error("Error fetching designs by user ID:", err);
+    console.error("Error fetching designs for the user:", err);
     res.status(500).json({
       success: false,
-      message: "Can't get designs by user ID",
+      message: "Can't get designs for the user",
     });
   }
 };

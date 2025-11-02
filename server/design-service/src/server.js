@@ -3,6 +3,8 @@ const express = require('express');
 const mongoose = require('mongoose'); 
 const cors = require('cors'); 
 const helmet = require('helmet'); 
+const desingRoutes = require('./routes/design-routes')
+
 
 const app = express(); 
 const PORT = process.env.PORT || 5001; 
@@ -13,6 +15,8 @@ app.use(cors());
 app.use(helmet());
 app.use(express.json()); 
 app.use(express.urlencoded({extended : true})); 
+
+app.use('/api/designs', desingRoutes);
 async function startServer(){
     try{
         app.listen(PORT , ()=> console.log('design service running on port' + PORT));
