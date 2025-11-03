@@ -18,7 +18,7 @@ app.use(express.urlencoded({extended : true}));
 //proxy options 
 const proxyOptions = {
     proxyReqPathResolver : (req) => {
-        return req.originalUrl.replace(/^\v1/, '/api')
+        return req.originalUrl.replace(/^\/v1/, '/api')
     }, 
     proxyErrorHandler : (err, res, next) => {
         res.status(500).json({

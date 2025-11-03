@@ -45,4 +45,4 @@ async function authMiddleware(req, res , next){
     }
 }
 
-module.export  = authMiddleware; 
+module.exports  = authMiddleware; 
