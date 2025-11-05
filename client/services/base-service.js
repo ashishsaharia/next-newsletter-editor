@@ -8,7 +8,6 @@ export async function fetchWithAuth(endpoint, options = {}) {
   if (!session) {
     throw new Error("Not authenticated");
   }
-
   try {
     const response = await axios({
       url: `${API_URL}${endpoint}`,

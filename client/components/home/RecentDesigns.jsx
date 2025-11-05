@@ -3,9 +3,12 @@
 import { useEffect } from "react";
 import { getUserDesigns } from '@/services/desing-service'
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 function RecentDesigns()
 {
+
+    const router = useRouter(); 
     const [userDesigns, setUserDesigns] = useState([]); 
 
     async function fetchUserDesings(){
@@ -32,7 +35,7 @@ function RecentDesigns()
                 }
                 {
                     userDesigns.map(design => (
-                        <div key={design._id} className = "group cursor-pointer"> 
+                        <div onClick={()=>router.push(`/editor/${design._id}`)} key={design._id} className = "group cursor-pointer"> 
                         <div className = "aspect-video bg-gray-100 rounded-lg mb-2 overflow-hidden transition-shadow group-hover:shadow-md"/>
                             <p className = "font-bold text-sm truncate">{design.name}</p>
                         </div>
