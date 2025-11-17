@@ -2,7 +2,7 @@
 
 import { Crown, Loader } from "lucide-react";
 import { Button } from "../ui/button";
-import { saveDesign } from "@/services/desing-service";
+import { saveDesign } from "@/services/design-service";
 import {useState} from 'react'
 import { useRouter } from "next/navigation";
 function Banner(){

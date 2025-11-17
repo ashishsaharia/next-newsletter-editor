@@ -59,13 +59,7 @@ function DrawingPanel() {
     }
   };
 
-  const handleDrawingOpacityChange = (value) => {
-    const opacity = Number(value[0]);
-    setDrawingOpacity(opacity);
-    if (canvas && isDrawingMode) {
-      updateDrawingBrush(canvas, { opacity: opacity / 100 });
-    }
-  };
+
 
   const handleToggleErasing = () => {
     if (!canvas && !isDrawingMode) return;
@@ -175,7 +169,7 @@ function DrawingPanel() {
                       min={1}
                       max={30}
                       step={1}
-                      onValueChange={(value) => setBrushWidth(value[0])}
+                      onValueChange={(value) => handleBrushWidthChange(value[0])}
                       className="flex-1"
                     />
                     <Plus className="h-4 w-4 text-gray-500" />
@@ -193,26 +187,6 @@ function DrawingPanel() {
                         {size.label}
                       </Button>
                     ))}
-                  </div>
-                  <div className="space-y-2 mt-4">
-                    <div className="flex justify-between">
-                      <Label className={"font-medium"}>
-                        <Droplets className="mr-2 h-4 w-4" />
-                        Opacity
-                      </Label>
-                      <span className="text-sm font-medium">
-                        {drawingOpacity}%
-                      </span>
-                    </div>
-                    <Slider
-                      value={[drawingOpacity]}
-                      min={1}
-                      max={100}
-                      step={1}
-                      onValueChange={(value) =>
-                        handleDrawingOpacityChange(value)
-                      }
-                    />
                   </div>
                 </div>
               </TabsContent>

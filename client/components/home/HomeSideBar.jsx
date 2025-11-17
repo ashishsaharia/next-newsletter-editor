@@ -4,7 +4,7 @@ import { FolderOpen, Plus, Home } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { saveDesign } from "@/services/desing-service";
+import { saveDesign } from "@/services/design-service";
 
 function HomeSideBar(){
         const [loading, setLoading] = useState(false); 
