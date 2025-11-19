@@ -10,7 +10,7 @@ function Canvas() {
   const fabricCanvasRef = useRef(null);
   const initAttemptedRef = useRef(false);
 
-  const { setCanvas, markAsModified } = useEditorStore();
+  const { canvas, setCanvas, markAsModified } = useEditorStore();
 
   useEffect(() => {
     const cleanUpCanvas = () => {
@@ -96,15 +96,35 @@ function Canvas() {
       cleanUpCanvas();
     };
   }, []);
+  let width = 0 ; 
+  let height = 0 ; 
 
-  return (
-    <div
-      className="relative w-full h-[600px] overflow-auto"
-      ref={canvasContainerRef}
-    >
-      <canvas ref={canvasRef} />
-    </div>
-  );
+
+  if(canvas)
+  {
+    width = canvas.getWidth();
+    height = canvas.getHeight();
+  }
+  else 
+  {
+    height = 600; 
+  }
+
+
+return (
+  <div
+    ref={canvasContainerRef}
+    className="relative overflow-auto"
+    style={{
+      width: width === 0 ? "100%" : `${width}px`,
+      height: `${height}px`
+    }}
+  >
+    <canvas ref={canvasRef} />
+  </div>
+);
+
+
 }
 
 export default Canvas;

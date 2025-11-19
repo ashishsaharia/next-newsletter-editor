@@ -51,50 +51,38 @@ export function exportAsSVG(canvas, fileName = "SVG Design") {
   }
 }
 
-export function exportAsPDF(canvas, fileName = "PDF Design", options = {}) {
+
+export function exportAsPDF(canvas, fileName = "PDF Design") {
   if (!canvas) return;
 
   try {
-    const defaultOptions = {
-      format: "a4",
-      orientation: "landscape",
-      unit: "mm",
-      ...options,
-    };
+    const canvasWidth = canvas.getWidth();
+    const canvasHeight = canvas.getHeight();
 
-    const pdf = new jsPDF(
-      defaultOptions.orientation,
-      defaultOptions.unit,
-      defaultOptions.format
-    );
+    // PDF uses pt → convert px → pt
+    const pdfWidth = canvasWidth * 0.75;
+    const pdfHeight = canvasHeight * 0.75;
 
-    const canvasWidth = canvas.width;
-    const canvasHeight = canvas.height;
+    // Create PDF matching canvas size
+    const pdf = new jsPDF({
+      orientation: canvasWidth > canvasHeight ? "landscape" : "portrait",
+      unit: "pt",
+      format: [pdfWidth, pdfHeight],
+    });
 
-    const pdfWidth = pdf.internal.pageSize.getWidth();
-    const pdfHeight = pdf.internal.pageSize.getHeight();
+    // HIGH-RES EXPORT (very important)
+    const imgData = canvas.toDataURL({
+      format: "png",
+      multiplier: 2,       // Increase DPI (2x or 3x recommended)
+      quality: 1.0,
+    });
 
-    const scale =
-      Math.min(pdfWidth / canvasWidth, pdfHeight / canvasHeight) * 0.9; //90% available space
-
-    const x = (pdfWidth - canvasWidth * scale) / 2;
-    const y = (pdfHeight - canvasHeight * scale) / 2;
-
-    const imgData = canvas.toDataURL("image/png", 1.0);
-
-    pdf.addImage(
-      imgData,
-      "PNG",
-      x,
-      y,
-      canvasWidth * scale,
-      canvasHeight * scale
-    );
-
+    pdf.addImage(imgData, "PNG", 0, 0, pdfWidth, pdfHeight);
     pdf.save(`${fileName}.pdf`);
 
     return true;
   } catch (e) {
+    console.error(e);
     return false;
   }
 }

@@ -27,8 +27,6 @@ function MainEditor() {
     setShowProperties,
     showProperties,
     isEditing,
-    setShowPremiumModal,
-    showPremiumModal,
   } = useEditorStore();
 
   useEffect(() => {
@@ -184,7 +182,7 @@ function MainEditor() {
         {isEditing && <Sidebar />}
 
         <div className="flex-1 flex flex-col overflow-hidden relative">
-          <main className="flex-1 overflow-hidden bg-[#f0f0f0] flex items-center justify-center">
+          <main className="flex-1 pt-2  overflow-auto bg-[#f0f0f0] flex  justify-center ">
             <Canvas />
           </main>
         </div>
