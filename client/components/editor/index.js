@@ -11,6 +11,7 @@ import Properties from "./properties";
 
 
 function MainEditor() {
+  
   const params = useParams();
   const router = useRouter();
   const designId = params?.slug;
@@ -175,6 +176,14 @@ function MainEditor() {
     };
   }, [canvas]);
 
+
+    
+
+
+
+
+
+
   return (
     <div className="flex flex-col h-screen overflow-hidden">
       <Header />
@@ -182,7 +191,7 @@ function MainEditor() {
         {isEditing && <Sidebar />}
 
         <div className="flex-1 flex flex-col overflow-hidden relative">
-          <main className="flex-1 pt-2  overflow-auto bg-[#f0f0f0] flex  justify-center ">
+          <main className="flex-1 pt-2 pb-2 overflow-auto bg-[#f0f0f0] flex  justify-center ">
             <Canvas />
           </main>
         </div>
